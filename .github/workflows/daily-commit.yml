@@ -2,8 +2,11 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: "15 2 * * *"   # Runs daily at 02:15 UTC (specific time, no wildcards for minute/hour)
-  workflow_dispatch:        
+    - cron: "55 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # <-- REQUIRED
 
 jobs:
   commit:
@@ -12,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Setup Git
         run: |
